@@ -18,20 +18,22 @@ Intern &Intern::operator=(const Intern &other) {
 	return *this;
 }
 
-AForm &Intern::makeForm(std::string name, std::string target) {
+AForm *Intern::makeForm(std::string name, std::string target) {
 	if (name == "ShrubberyRequestForm") {
-		ShrubberyCreationForm form = ShrubberyCreationForm(target);
+		AForm *form = new ShrubberyCreationForm(target);
 		std::cout << "Intern creates " << target << std::endl;
-		return (*form);
+		return (form);
 	} else if (name == "RobotomyRequestForm") {
-		RobotomyRequestForm form = RobotomyRequestForm(target);
+		AForm *form = new RobotomyRequestForm(target);
 		std::cout << "Intern creates " << target << std::endl;
-		return (*form);
+		return (form);
 	} else if (name == "PresidentialPardonForm") {
-		PresidentialPardonForm form = PresidentialPardonForm(target);
+		AForm *form = new PresidentialPardonForm(target);
 		std::cout << "Intern creates " << target << std::endl;
-		return (*form);
+		return (form);
 	} else {
 		std::cout << name << " form was not found" << std::endl;
+		throw(Intern::FormNotFound());
+		return 0;
 	}
 }

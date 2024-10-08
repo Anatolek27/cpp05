@@ -3,6 +3,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include <unistd.h>
 
 int main(void) 
@@ -45,8 +46,20 @@ int main(void)
 
 		C.signForm(M);
 		M.execute(C);
-		M.execute(A);
+		//M.execute(A);
 
+
+		Intern intern;
+		AForm *form = intern.makeForm("ShrubberyCreationForm", "Target");
+		AForm *form2 = intern.makeForm("RobotomyRequestForm", "Human");
+		AForm *form3 = intern.makeForm("PresidentialPardonForm", "Target");		
+
+		AForm *form4 = intern.makeForm("Non existant form", "Target");
+
+		delete form;
+		delete form2;
+		delete form3;
+		delete form4;
 	} catch(std::exception const &e) {
 		std::cerr << e.what() << std::endl;
 	}
