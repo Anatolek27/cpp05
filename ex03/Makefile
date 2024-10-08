@@ -34,10 +34,12 @@ $(NAME):
 
 clean:
 	@$(RM) $(NAME)
+	@$(RM) *_shrubbery
 	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
 
 fclean:
 	@$(RM) $(NAME)
+	@$(RM) *_shrubbery
 	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
 
 re: clean all

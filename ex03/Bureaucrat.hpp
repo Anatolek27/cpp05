@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+class AForm;
+
 class Bureaucrat {
 	private:
 		const std::string _name;
@@ -33,6 +35,8 @@ class Bureaucrat {
 					return ("Grade too high");
 				}
 		};
+
+		void signForm(AForm &f);
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat *other);

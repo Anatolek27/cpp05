@@ -1,4 +1,4 @@
-#include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Bureaucrat"), _grade(150) {
 	//std::cout << "Bureaucrat constructor called" << std::endl;
@@ -45,6 +45,19 @@ void Bureaucrat::decrement() {
 		throw Bureaucrat::GradeTooLowException();
 	else
 		this->_grade++;
+}
+
+void Bureaucrat::signForm(AForm &f) {
+	if (this->_grade <= f.getGradeToSign() && f.getSigned() == false)
+	{
+		std::cout << this->_name << " signed " << f.getName() << std::endl;
+		f.setSigned();
+	} else if (this->_grade >= f.getGradeToSign())
+	{
+		std::cout << this->_name << " couldn't sign " << f.getName() << " because his grade is too low." << std::endl;
+	} else {
+		std::cout << this->_name << " couldn't sign " << f.getName() << " because it was already signed." << std::endl;
+	}
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat *other) {

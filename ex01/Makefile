@@ -1,27 +1,43 @@
-# Variables
-NAME    = Bureaucrat
-SRC     = Main.cpp Bureaucrat.cpp Form.cpp
-OBJ     = $(SRC:.cpp=.o)
-CXX     = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: akunegel <akunegel@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/05 11:42:32 by akunegel          #+#    #+#              #
+#    Updated: 2024/08/05 17:06:01 by akunegel         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME	= Form
+	
+CC		= c++
+FLAGS	= -Wall -Wextra -Werror -std=c++98
+RM		= rm -rf
+
+#Colors:
+GREEN		=	\e[92;5;118m
+YELLOW		=	\e[93;5;226m
+GRAY		=	\e[33;2;37m
+RESET		=	\e[0m
+CURSIVE		=	\e[33;3m
+
+.PHONY: all clean re
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@echo "Compiling $(NAME)..."
-	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
-
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+$(NAME): 
+	@printf "$(CURSIVE)$(GRAY) 	- Compiling $(NAME)... $(RESET)\n"
+	@ $(CC) $(FLAGS) *.cpp -o $(NAME)
+	@printf "$(GREEN)    - Executable ready.\n$(RESET)"
 
 clean:
-	@echo "Cleaning object files..."
-	@rm -f $(OBJ)
+	@$(RM) $(NAME)
+	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
 
-fclean: clean
-	@echo "Removing executable $(NAME)..."
-	@rm -f $(NAME)
+fclean:
+	@$(RM) $(NAME)
+	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
 
-re: fclean all
-
-.PHONY: all clean fclean re
+re: clean all

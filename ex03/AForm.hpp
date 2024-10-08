@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Bureaucrat.hpp"
+#include <fstream>
 
-class Form
+class AForm
 {
 	private:
 		const std::string _name;
@@ -10,12 +11,12 @@ class Form
 		const int _gradeToSign;
 		const int _gradeToExec;
 	public:
-		Form();
-		Form(const Form &other);
-		Form(std::string name, int gradeToSign, int gradeToExec);
-		~Form();
+		AForm();
+		AForm(const AForm &other);
+		AForm(std::string name, int gradeToSign, int gradeToExec);
+		virtual ~AForm() = 0;
 
-		Form &operator=(const Form &other);
+		AForm &operator=(const AForm &other);
 		
 		std::string getName() const;
 		bool getSigned() const;
@@ -30,5 +31,5 @@ class Form
 
 		void setSigned();
 
-		void beSigned(const Bureaucrat &b);
+		virtual void beSigned(const Bureaucrat &b);
 };
